@@ -1,0 +1,39 @@
+{
+  "name": "jumpa-client",
+  "version": "1.0.0",
+  "description": "This guide is for the usage of single file engine of Cocos2d-JS which can be retrieved from [the online downloader](http://cocos2d-x.org/filecenter/jsbuilder/).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/f4th4n/jumpa-client.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/f4th4n/jumpa-client/issues"
+  },
+  "homepage": "https://github.com/f4th4n/jumpa-client#readme",
+  "dependencies": {
+    "@babel/core": "^7.15.5",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.5",
+    "@rollup/stream": "^2.0.0",
+    "browser-sync": "^2.27.5",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-merge": "^0.1.1",
+    "gulp-sourcemaps": "^3.0.0",
+    "phoenix": "^1.6.0",
+    "rollup": "^2.57.0",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-json": "^4.1.0"
+  }
+}

@@ -1,0 +1,5 @@
+{
+	"socket": {
+		"gameEndpoint": "ws://localhost:4000/game/websocket?vsn=2.0.0"
+	}
+}
