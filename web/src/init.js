@@ -2,6 +2,9 @@ import { playerModel } from './models/player-model'
 
 const init = {
   setState: () => {
+		init.setPlayerIdFromQueryParam()
+  },
+	setPlayerIdFromQueryParam: () => {
     const urlSearchParams = new URLSearchParams(window.location.search)
     const params = Object.fromEntries(urlSearchParams.entries())
     if (!params.player_id) {
@@ -12,7 +15,7 @@ const init = {
 		playerModel.currentPlayer.playerId.next(playerId)
 
     return null
-  },
+	}
 }
 
 export { init }

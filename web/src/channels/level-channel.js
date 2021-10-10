@@ -1,5 +1,6 @@
 import { Presence } from 'phoenix'
 import { playerModel } from '../models/player-model'
+import { game } from '../game/index'
 
 const levelChannel = {
   channel: null,
@@ -35,12 +36,18 @@ const levelChannel = {
         console.log('Unable to join', resp)
       })
 
+		levelChannel.addEvent(channel)
+  },
+
+	addEvent: (channel) => {
     channel.on('ping', (state) => {
       console.log('there is ping from server', state, +new Date())
     })
 
-    channel.on('walk', (state) => {
-      console.log('server is walk', state, +new Date())
+    channel.on('walk_absolute', (state) => {
+			//game.position.updatePos(state)
+			playerModel.setPositions(state)
+			console.log('state', state)
     })
 
     channel.on('presence_state', (state) => {
@@ -52,7 +59,7 @@ const levelChannel = {
       const presences = Presence.syncDiff(levelChannel.presences, diff)
 			playerModel.presences.next(presences)
     })
-  },
+	}
 }
 
 // -------------------------------------------------------------------------------- EXPOSE

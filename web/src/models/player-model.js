@@ -4,25 +4,24 @@ const playerModel = {
   currentPlayer: {
     playerId: new BehaviorSubject(-1),
   },
-  players: [
+  players: new BehaviorSubject([]),
     /*
-		{
-			id: int,
-			nick: string,
-			position: {
-				x: float,
-				y: float
+		 * players: {
+				id: int,
+				nick: string,
+				position: {
+					x: float,
+					y: float
+				},
+				inventories: [
+					{
+						id: int,
+						// TODO
+					}
+				]
 			},
-			inventories: [
-				{
-					id: int,
-					// TODO
-				}
-			]
-    },
 		*/
-  ],
-  presences: new BehaviorSubject([])
+  presences: new BehaviorSubject([]),
 	/*
 	 * presences: {
 			'player:$int': {
@@ -36,6 +35,16 @@ const playerModel = {
 			},
 		},
 	*/
+
+	// methods
+	setPositions: (eventState) => {
+		const players = [...playerModel.players._value]
+		const ctxPlayer = players.find(v => v.id == eventState.player_id)
+		if(ctxPlayer) {
+		}
+		
+		console.log('ff', ctxPlayer)
+	}
 }
 
 export { playerModel }
