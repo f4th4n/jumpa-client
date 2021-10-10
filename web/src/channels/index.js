@@ -7,7 +7,7 @@ const channelModule = {
 		const socket = new Socket(config.wsGameEndpoint, { params: { token: 'abc' } }) // TODO change token
 		socket.connect()
 
-		levelChannel.create(socket)
+		levelChannel.init(socket)
 		
 		return socket;
 	}

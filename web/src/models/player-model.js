@@ -1,4 +1,9 @@
-var data = {
+import { BehaviorSubject } from 'rxjs'
+
+const playerModel = {
+  currentPlayer: {
+    playerId: new BehaviorSubject(-1),
+  },
   players: [
     /*
 		{
@@ -11,16 +16,26 @@ var data = {
 			inventories: [
 				{
 					id: int,
-
+					// TODO
 				}
 			]
     },
 		*/
   ],
-}
-
-const playerModel = {
-	data
+  presences: new BehaviorSubject([])
+	/*
+	 * presences: {
+			'player:$int': {
+				metas: [
+					{
+						nick: string,
+						phx_ref: string,
+						player_id: int,
+					},
+				],
+			},
+		},
+	*/
 }
 
 export { playerModel }
