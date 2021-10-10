@@ -9,10 +9,8 @@ const playerModel = {
 		 * players: {
 				id: int,
 				nick: string,
-				position: {
-					x: float,
-					y: float
-				},
+				pos_x: float,
+				pos_y: float,
 				inventories: [
 					{
 						id: int,
