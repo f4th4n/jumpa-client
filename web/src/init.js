@@ -2,20 +2,20 @@ import { playerModel } from './models/player-model'
 
 const init = {
   setState: () => {
-		init.setPlayerIdFromQueryParam()
+    init.setPlayerIdFromQueryParam()
   },
-	setPlayerIdFromQueryParam: () => {
+  setPlayerIdFromQueryParam: () => {
     const urlSearchParams = new URLSearchParams(window.location.search)
     const params = Object.fromEntries(urlSearchParams.entries())
-    if (!params.player_id) {
+    if (!params.player_token) {
       return 'Unknown player id'
     }
 
-		const playerId = parseInt(params.player_id)
-		playerModel.currentPlayer.playerId.next(playerId)
+    onst playerToken = params.player_token
+    playerModel.currentPlayer.next({ ...playerModel.currentPlayer._value, playerToken })
 
     return null
-	}
+  },
 }
 
 export { init }

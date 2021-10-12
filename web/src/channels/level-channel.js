@@ -12,13 +12,13 @@ const levelChannel = {
   },
 
   subscribe: () => {
-    playerModel.currentPlayer.playerId.subscribe({
-      next: (playerId) => levelChannel.create(playerId),
+    playerModel.currentPlayer.subscribe({
+      next: (currentPlayer) => levelChannel.create(currentPlayer.playerToken),
     })
   },
 
-  create: (playerId) => {
-    const payload = { player_id: playerId }
+  create: (playerToken) => {
+    const payload = { player_token: playerToken }
     const channel = levelChannel.socket.channel('level', payload)
     levelChannel.channel = channel
 
@@ -37,7 +37,7 @@ const levelChannel = {
 
   getPlayers: (channel) => {
     channel
-      .push('get_positions', { player_id: 1, created_at: +new Date(), x: 10.21, y: 4.203 })
+      .push('get_players', { player_token: 1 })
       .receive('ok', (reply) => playerModel.players.next([...reply.data]))
   },
 
