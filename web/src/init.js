@@ -1,20 +1,24 @@
 import { playerModel } from './models/player-model'
 
 const init = {
-  setState: () => {
-    init.setPlayerIdFromQueryParam()
+  setState: async () => {
+    await init.setPlayer()
   },
-  setPlayerIdFromQueryParam: () => {
+  setPlayer: async () => {
+    const playerId = init.getPlayerIdFromQueryParam()
+    console.log('playerId', playerId)
+  },
+  getPlayerIdFromQueryParam: () => {
     const urlSearchParams = new URLSearchParams(window.location.search)
     const params = Object.fromEntries(urlSearchParams.entries())
     if (!params.player_token) {
-      return 'Unknown player id'
+      throw new Error('Unknown player id')
     }
 
-    onst playerToken = params.player_token
-    playerModel.currentPlayer.next({ ...playerModel.currentPlayer._value, playerToken })
+    const playerToken = params.player_token
+    //playerModel.currentPlayer.next({ ...playerModel.currentPlayer._value, playerToken })
 
-    return null
+    return playerToken
   },
 }
 

@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs'
 const playerModel = {
   currentPlayer: new BehaviorSubject({
     playerToken: '',
+		id: '-',
 		name: '-',
   }),
   players: new BehaviorSubject([]),

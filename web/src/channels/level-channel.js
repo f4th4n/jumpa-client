@@ -36,8 +36,9 @@ const levelChannel = {
   },
 
   getPlayers: (channel) => {
+		console.log('playerModel.currentPlayer._value', playerModel.currentPlayer._value.playerToken)
     channel
-      .push('get_players', { player_token: 1 })
+      .push('get_players', { player_token: playerModel.currentPlayer._value.playerToken })
       .receive('ok', (reply) => playerModel.players.next([...reply.data]))
   },
 
