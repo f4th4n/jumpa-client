@@ -2,7 +2,7 @@ import { BehaviorSubject } from 'rxjs'
 
 const playerModel = {
   currentPlayer: new BehaviorSubject({
-    playerToken: '',
+    token: '',
 		id: '-',
 		name: '-',
   }),

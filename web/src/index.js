@@ -1,9 +1,9 @@
-import { init } from './init'
+import { initializeState } from './initialize-state'
 import { socket } from './channels/index'
 import { renderPlayer } from './players/render-player'
 import { global } from './global'
 
-init
+initializeState
   .setState()
   .then(() => {
     renderPlayer.start()
@@ -12,5 +12,5 @@ init
   })
   .catch((e) => {
     console.log('e', e)
-    alert(e)
+		//alert(e)
   })

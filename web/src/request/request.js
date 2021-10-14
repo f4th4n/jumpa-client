@@ -1,9 +1,9 @@
 import config from '../config.json'
-import axios from 'axios'
 
 const request = {
-  get: (path) => {
-    return fetch(config.apiGameEndpoint + path)
+  get: async (path) => {
+		const res = await fetch(config.apiGameEndpoint + path)
+    return await res.json()
   },
 }
 
