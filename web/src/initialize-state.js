@@ -14,7 +14,6 @@ const initializeState = {
       }
 
       const playerToken = params.player_token
-      //playerModel.currentPlayer.next({ ...playerModel.currentPlayer._value, playerToken })
 
       return playerToken
     }

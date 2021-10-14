@@ -1,5 +1,6 @@
 import { Presence } from 'phoenix'
 import { playerModel } from '../models/player-model'
+import { position } from '../game/position'
 
 const levelChannel = {
   channel: null,
@@ -40,15 +41,9 @@ const levelChannel = {
         console.log('Unable to join', resp)
       })
 
-    levelChannel.getPlayers(channel)
+		// TODO resume on last position when reload
+		position.walkAbsolute(0, 0)
     levelChannel.addEvent(channel)
-  },
-
-  getPlayers: (channel) => {
-		console.log('playerModel.currentPlayer._value', playerModel.currentPlayer._value.token)
-    channel
-      .push('get_players', { player_token: playerModel.currentPlayer._value.token })
-      .receive('ok', (reply) => playerModel.players.next([...reply.data]))
   },
 
   addEvent: (channel) => {
@@ -57,9 +52,8 @@ const levelChannel = {
     })
 
     channel.on('walk_absolute', (state) => {
-      //game.position.updatePos(state)
-      playerModel.setPositions(state)
       console.log('state', state)
+			position.updateOtherPlayerPos(state)
     })
 
     channel.on('presence_state', (state) => {

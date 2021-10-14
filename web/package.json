@@ -4,7 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "webpack --watch"
+    "start": "webpack --watch",
+		"deploy": "echo copy ./dist/main.js to unity build"
   },
   "keywords": [],
   "author": "",
