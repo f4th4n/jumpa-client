@@ -27,7 +27,7 @@ namespace Jumpa {
                 Scene scene = SceneManager.GetActiveScene();
                 if(!config.IsMobile) {
                     GameObject.Find("Analog Left").SetActive(false);
-                    GameObject.Find("Analog Right").SetActive(false);
+                    //GameObject.Find("Analog Right").SetActive(false);
                 }
             }
 

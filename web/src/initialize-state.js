@@ -1,29 +1,55 @@
 import { playerModel } from './models/player-model'
 import { request } from './request/request'
+import { plainWeb } from './plain-web'
+import { unity } from './unity'
 
 const initializeState = {
-  setState: async () => {
-    await initializeState.setPlayer()
+  waitForUnity: () => {
+    if (!window.isInsideUnity) return Promise.resolve()
+
+    return new Promise((resolve, reject) => {
+      const pointer = setInterval(() => {
+        if (window.unityInstance) {
+          clearInterval(pointer)
+          resolve()
+          return
+        }
+      }, 50)
+    })
   },
-  setPlayer: async () => {
-    const getPlayerTokenFromQueryParam = () => {
-      const urlSearchParams = new URLSearchParams(window.location.search)
-      const params = Object.fromEntries(urlSearchParams.entries())
-      if (!params.player_token) {
-        throw new Error('Unknown player id')
+  setState: async () => {
+    const setPlayer = async () => {
+      const getPlayerTokenFromQueryParam = () => {
+        const urlSearchParams = new URLSearchParams(window.location.search)
+        const params = Object.fromEntries(urlSearchParams.entries())
+        if (!params.player_token) {
+          throw new Error('Unknown player id')
+        }
+
+        const playerToken = params.player_token
+
+        return playerToken
       }
 
-      const playerToken = params.player_token
+      const playerToken = getPlayerTokenFromQueryParam()
+      const resPlayer = await request.get(`/players/get-by-token/${playerToken}`)
+      const player = resPlayer.data
+      if (!player) throw new Error('Player not found')
 
-      return playerToken
+      playerModel.currentPlayer.next(player)
     }
-
-    const playerToken = getPlayerTokenFromQueryParam()
-    const resPlayer = await request.get(`/players/get-by-token/${playerToken}`)
-    const player = resPlayer.data
-    if (!player) throw new Error('Player not found')
-
-		playerModel.currentPlayer.next(player)
+    await setPlayer()
+  },
+  renderState: async () => {
+    if (window.isInsideUnity) {
+			const currentPlayer = playerModel.currentPlayer._value
+      unity.player.changeName(currentPlayer.nick)
+			console.log('currentPlayer.pos_x', currentPlayer.pos_x)
+			console.log('currentPlayer.pos_y', currentPlayer.pos_y)
+			unity.player.changePos(currentPlayer.pos_x, currentPlayer.pos_y)
+    } else {
+      plainWeb.renderPlayer.start()
+    }
   },
 }
 

@@ -1,12 +1,6 @@
 mergeInto(LibraryManager.library, {	
 	StartJS: function() {
 		console.log('start js')
-		setTimeout(function() {
-			const name = 'tas tas'//ff.models.playerModel.currentPlayer._value.nick
-			console.log('before', name)
-			window.unityInstance.SendMessage('Player', 'TryTry', name);
-			console.log('after')
-		}, 1000)
 	},
 
   GetCurrentPlayerName: function () {
