@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 public class Try : MonoBehaviour
 {
     [DllImport("__Internal")]
-    private static extern void Hello();
+    private static extern void StartJS();
 
     [DllImport("__Internal")]
     private static extern void HelloString(string str);
@@ -24,7 +24,11 @@ public class Try : MonoBehaviour
     private static extern void BindWebGLTexture(int texture);
 
     void Start() {
-        Hello();
+        StartJS();
+        return;
+
+		
+        
 
         HelloString("This is a string.");
 

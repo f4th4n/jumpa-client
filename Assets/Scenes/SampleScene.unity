@@ -430,6 +430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 632320708}
   - component: {fileID: 632320707}
+  - component: {fileID: 632320709}
   m_Layer: 0
   m_Name: Config
   m_TagString: Untagged
@@ -465,6 +466,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &632320709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632320706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f7ad68c7af54b73b0fac331e45e6c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &751300110
 GameObject:
   m_ObjectHideFlags: 0
@@ -827,7 +840,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1426104923}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42f7ad68c7af54b73b0fac331e45e6c2, type: 3}
+  m_Script: {fileID: 11500000, guid: df56a826057374dcf80f068b2807325f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1521471349
@@ -842,7 +855,7 @@ GameObject:
   - component: {fileID: 1521471352}
   - component: {fileID: 1521471351}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Player Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
