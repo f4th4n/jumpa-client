@@ -12,5 +12,5 @@ http://localhost:3000/?player_token=gg
 ```
 
 ### Deploy to Unity
-Change isProd to true in config.json
+Change isProd to true in src/config.json
 $ ./resolve-unity-build.sh
