@@ -1,11 +1,16 @@
 import { caller } from './caller'
 
 const player = {
-	changeName: (name) => {
-		caller.call('Player', 'ChangeName', name)
+	updateProfile: (player) => {
+		caller.call('Player', 'BridgeUpdateProfile', {
+			id: player.id,
+			name: player.nick,
+			color: [1.0, 0, 0] // TODO implement color system
+		})
 	},
-	changePos: (x, y) => {
-		caller.call('Player', 'ChangePos', x, y)
+	updatePos: (x, y) => {
+		console.log('player changed pos', x, y)
+		caller.call('Player', 'BridgeUpdatePos', JSON.stringify({x, y}))
 	}
 }
 

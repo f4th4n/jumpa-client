@@ -68,6 +68,12 @@ namespace Jumpa {
                     return;
                 }
             }
+
+            public void BridgeUpdatePos(string pos) {
+                var posObj = JsonUtility.FromJson<Vector3>(pos);
+                Rigidbody2D rb = GetComponent<Rigidbody2D>();
+                rb.MovePosition(new Vector2(posObj.x, posObj.y));
+            }
         }
     }
 }

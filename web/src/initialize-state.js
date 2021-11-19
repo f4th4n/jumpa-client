@@ -43,10 +43,8 @@ const initializeState = {
   renderState: async () => {
     if (window.isInsideUnity) {
 			const currentPlayer = playerModel.currentPlayer._value
-      unity.player.changeName(currentPlayer.nick)
-			console.log('currentPlayer.pos_x', currentPlayer.pos_x)
-			console.log('currentPlayer.pos_y', currentPlayer.pos_y)
-			unity.player.changePos(currentPlayer.pos_x, currentPlayer.pos_y)
+      unity.player.updateProfile(currentPlayer)
+			unity.player.updatePos(currentPlayer.pos_x, currentPlayer.pos_y)
     } else {
       plainWeb.renderPlayer.start()
     }
