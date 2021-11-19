@@ -2,6 +2,7 @@ import { game } from './game/index'
 import { levelChannel } from './channels/level-channel'
 import { playerModel } from './models/player-model'
 import { request } from './request/request'
+import { unity } from './unity'
 
 const global = {
 	start: () => {
@@ -13,7 +14,8 @@ const global = {
 			models: {
 				playerModel
 			},
-			request
+			request,
+			unity
 		}
 	}
 }

@@ -1,7 +1,11 @@
-mergeInto(LibraryManager.library, {
+mergeInto(LibraryManager.library, {	
+	StartJS: function() {
+		console.log('start js')
+	},
 
-  Hello: function () {
-    window.alert("Hello, world!");
+  GetCurrentPlayerName: function () {
+    //window.alert("Hello, world!");
+		return "YOI MEN";
   },
 
   HelloString: function (str) {
