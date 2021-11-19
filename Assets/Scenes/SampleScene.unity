@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 19957458}
   - component: {fileID: 19957457}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -331,7 +331,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.91, y: 1.21, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1426104925}
@@ -362,8 +362,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521537976}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4825, y: 2.3328, z: 0}
-  m_LocalScale: {x: 30.62635, y: 16.952318, z: 1}
+  m_LocalPosition: {x: 0.24, y: 0.23, z: 0}
+  m_LocalScale: {x: 38.63514, y: 21.478586, z: 1}
   m_Children: []
   m_Father: {fileID: 517310565}
   m_RootOrder: 0
@@ -450,7 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IgnoreAllBelowValueEditConfigJSONInstead: 0
-  IsMobile: 1
+  IsMobile: 0
 --- !u!4 &632320708
 Transform:
   m_ObjectHideFlags: 0
@@ -756,7 +756,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f27a9e2d9f4370c4e883dc5df5e0c667, type: 3}
   m_Color: {r: 0, g: 0.35427713, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -776,7 +776,7 @@ Transform:
   m_GameObject: {fileID: 1426104923}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 519420032}
   m_Father: {fileID: 0}

@@ -8,7 +8,7 @@ namespace Jumpa {
         public class PlayerMovement : MonoBehaviour {
             public float Speed = 5f;
 
-            private Jumpa.Config config;
+            private Config config;
             private Camera mainCamera;
             private Rigidbody2D rb;
             private DynamicJoystick dynamicJoystickLeft;
@@ -21,13 +21,13 @@ namespace Jumpa {
                 dynamicJoystickLeft = GameObject.Find("Variable Joystick Left").GetComponent<DynamicJoystick>();
                 //dynamicJoystickRight = GameObject.Find("Variable Joystick Right").GetComponent<DynamicJoystick>();
 
-                config = GameObject.Find("Config").GetComponent<Jumpa.Config>();
+                config = GameObject.Find("Config").GetComponent<Config>();
 
                 // enable/disable joystick gameObject
                 Scene scene = SceneManager.GetActiveScene();
                 if(!config.IsMobile) {
                     GameObject.Find("Analog Left").SetActive(false);
-                    GameObject.Find("Analog Right").SetActive(false);
+                    //GameObject.Find("Analog Right").SetActive(false);
                 }
             }
 
