@@ -1,21 +1,6 @@
 import { caller } from './caller'
 import { playerModel } from '../models/player-model'
-
-class PlayerProfile {
-	id = null
-	name = ''
-	color = [0, 0, 0]
-	posX = 0
-	posY = 0
-
-	constructor(id, name, color, posX, posY) {
-		this.id = id
-		this.name = name
-		this.color = color
-		this.posX = posX
-		this.posY = posY
-	}
-}
+import { PlayerProfile } from '../models/player-profile-class'
 
 const player = {
 	currentPlayer: null,
@@ -42,6 +27,9 @@ const player = {
 		const spawnPlayer = () => {
 			var res = []
 			for (let presence of playerMinusSelf) {
+				const spawnedPlayerProfileIds = player.spawnedPlayerProfile.map((v) => v.id)
+				if (spawnedPlayerProfileIds.includes(presence.player_id)) continue
+
 				const profile = new PlayerProfile(presence.player_id, presence.nick, [1, 1, 1], 0, 0)
 				res.push(profile)
 				player.spawn(profile)
@@ -78,14 +66,16 @@ const player = {
 		caller.call('Player', 'BridgeUpdateProfile', JSON.stringify(profile))
 	},
 	updatePos: (x, y) => {
-		console.log('player changed pos', x, y)
-		caller.call('Player', 'BridgeUpdatePos', JSON.stringify({ x, y }))
+		var profile = new PlayerProfile()
+		profile.id = -99 // self
+		profile.posX = x
+		profile.posY = y
+		caller.call('Player', 'BridgeUpdatePos', JSON.stringify(profile))
 	},
 	spawn: (profile) => {
 		caller.call('PlayerSpawner', 'BridgeSpawn', JSON.stringify(profile))
 	},
 	destroy: (playerId) => {
-		console.log('destroy', playerId)
 		caller.call('PlayerSpawner', 'BridgeDestroy', playerId)
 	},
 }

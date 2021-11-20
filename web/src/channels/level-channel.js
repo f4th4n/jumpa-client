@@ -6,9 +6,9 @@ const levelChannel = {
   channel: null,
   socket: null,
   presences: [],
-	state: {
-		currentPlayer: null,
-	},
+  state: {
+    currentPlayer: null,
+  },
 
   init: (socket) => {
     levelChannel.socket = socket
@@ -17,18 +17,18 @@ const levelChannel = {
 
   subscribe: () => {
     playerModel.currentPlayer.subscribe({
-			next: (currentPlayer) => {
-				levelChannel.state.currentPlayer = currentPlayer
-				console.log('dddd', currentPlayer)
-				levelChannel.create()
-			},
+      next: (currentPlayer) => {
+        levelChannel.state.currentPlayer = currentPlayer
+        console.log('dddd', currentPlayer)
+        levelChannel.create()
+      },
     })
   },
 
   create: () => {
-		const currentPlayer = levelChannel.state.currentPlayer
+    const currentPlayer = levelChannel.state.currentPlayer
     const payload = { player_token: currentPlayer.token }
-		const roomToken = currentPlayer.room.token
+    const roomToken = currentPlayer.room.token
     const channel = levelChannel.socket.channel('level:' + roomToken, payload)
     levelChannel.channel = channel
 
@@ -41,8 +41,8 @@ const levelChannel = {
         console.log('Unable to join', resp)
       })
 
-		// TODO resume on last position when reload
-		position.walkAbsolute(0, 0)
+    // TODO resume on last position when reload
+    position.walkAbsolute(0, 0)
     levelChannel.addEvent(channel)
   },
 
@@ -52,8 +52,7 @@ const levelChannel = {
     })
 
     channel.on('walk_absolute', (state) => {
-      console.log('state', state)
-			position.updateOtherPlayerPos(state)
+      position.updatePlayerPos(state)
     })
 
     channel.on('presence_state', (state) => {

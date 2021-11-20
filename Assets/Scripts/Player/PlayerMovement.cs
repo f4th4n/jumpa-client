@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Runtime.InteropServices;
 
 namespace Jumpa {
     namespace Player {
         public class PlayerMovement : MonoBehaviour {
             public float Speed = 5f;
+
+            [DllImport("__Internal")]
+            private static extern void BridgeGetPos(int playerId, float x, float y);
 
             private Config config;
             private Camera mainCamera;
@@ -37,7 +41,7 @@ namespace Jumpa {
             }
 
             private void setDirection() {
-							return;
+				return;
                 Vector3 direction;
                 if (config.IsMobile) {
                     direction = new Vector2(dynamicJoystickRight.Horizontal, dynamicJoystickRight.Vertical);
@@ -65,14 +69,30 @@ namespace Jumpa {
                 Vector3 viewPos = mainCamera.WorldToViewportPoint(transform.position);
                 if (viewPos.x < 0 || viewPos.x > 1 || viewPos.y < 0 || viewPos.y > 1) {
                     rb.transform.position = oldPos;
-                    return;
                 }
+
+                PlayerProfileHandler pp = GetComponent<PlayerProfileHandler>();
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+                    Vector2 pos = rb.transform.position;
+                    BridgeGetPos(pp.playerProfile.id, pos.x, pos.y);
+#endif
             }
 
-            public void BridgeUpdatePos(string pos) {
-                var posObj = JsonUtility.FromJson<Vector3>(pos);
-                Rigidbody2D rb = GetComponent<Rigidbody2D>();
-                rb.MovePosition(new Vector2(posObj.x, posObj.y));
+            public void BridgeUpdatePos(string ppStr) {
+                var pp = JsonUtility.FromJson<PlayerProfile>(ppStr);
+                Rigidbody2D rb;
+
+                if (pp.id == -99) { // self
+                    rb = GetComponent<Rigidbody2D>();
+                } else {
+                    GameObject go = GameObject.Find("Spawner/PlayerSpawner/" + pp.id.ToString());
+                    if (go == null) return;
+
+                    rb = go.GetComponent<Rigidbody2D>();
+                }
+
+                rb.MovePosition(new Vector2(pp.posX, pp.posY));
             }
         }
     }

@@ -1,4 +1,4 @@
-mergeInto(LibraryManager.library, {	
+mergeInto(LibraryManager.library, {
 	StartJS: function() {
 		console.log('start js')
 	},
@@ -32,5 +32,15 @@ mergeInto(LibraryManager.library, {
   BindWebGLTexture: function (texture) {
     GLctx.bindTexture(GLctx.TEXTURE_2D, GL.textures[texture]);
   },
+
+  BridgeGetPos: function (playerId, x, y) {
+    if(window.lastX !== x || window.lastY !== y) {
+      console.log('walkAbsolute', x, y)
+      window.ff.game.position.walkAbsolute(x, y)
+    }
+
+    window.lastX = x
+    window.lastY = y
+  }
 
 });

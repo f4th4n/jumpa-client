@@ -24,11 +24,8 @@ public class Try : MonoBehaviour
     private static extern void BindWebGLTexture(int texture);
 
     void Start() {
-        StartJS();
         return;
-
-		
-        
+        StartJS();
 
         HelloString("This is a string.");
 

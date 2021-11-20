@@ -16,6 +16,8 @@ namespace Jumpa {
         }
 
         public class PlayerProfileHandler : MonoBehaviour {
+            public PlayerProfile playerProfile;
+
             public void Start() {
                 // BridgeUpdateProfile("{\"id\":1,\"name\":\"test\",\"color\":[1,0,0]}");
             }
@@ -25,8 +27,9 @@ namespace Jumpa {
                 UpdateProfile(profileObj);
             }
 
-            public void UpdateProfile(PlayerProfile playerProfile) {
-                changeName(playerProfile.name);
+            public void UpdateProfile(PlayerProfile pp) {
+                playerProfile = pp;
+                changeName(pp.name);
                 List<int> color = playerProfile.color;
                 changeColor(color[0], color[1], color[2]);
             }

@@ -15,7 +15,7 @@ namespace Jumpa {
                 */
             }
 
-            private async Task WaitOneSecondAsync() {
+            private async Task WaitOneSecondAsyncf() {
                 await Task.Delay(TimeSpan.FromSeconds(5));
                 Debug.Log("Finished waiting.");
             }
