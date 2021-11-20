@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "start": "webpack --watch",
-    "deploy": "echo copy ./dist/main.js to unity build"
+    "deploy": "./resolve-unity-build.sh"
   },
   "keywords": [],
   "author": "",

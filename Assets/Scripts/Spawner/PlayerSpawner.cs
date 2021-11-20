@@ -8,15 +8,15 @@ namespace Jumpa {
         public class PlayerSpawner : MonoBehaviour {
             public async void Start() {
                 /*
-                BridgeSpawn("{\"id\":1,\"name\":\"test\",\"color\":[1,0,0],\"posX\":3.0,\"posY\":2.0}");
+                 * BridgeSpawn("{\"id\":2,\"name\":\"test\",\"color\":[1,0,0],\"posX\":3.0,\"posY\":2.0}");
 
                 await WaitOneSecondAsync();
-                BridgeDestroy("1");
+                BridgeDestroy(2);
                 */
             }
 
             private async Task WaitOneSecondAsync() {
-                await Task.Delay(TimeSpan.FromSeconds(3));
+                await Task.Delay(TimeSpan.FromSeconds(5));
                 Debug.Log("Finished waiting.");
             }
 
@@ -30,8 +30,10 @@ namespace Jumpa {
                 player.name = profileObj.id.ToString();
             }
 
-            public void BridgeDestroy(string playerId) {
-                GameObject go = GameObject.Find("Spawner/PlayerSpawner/" + playerId);
+            public void BridgeDestroy(int playerId) {
+                GameObject go = GameObject.Find("Spawner/PlayerSpawner/" + playerId.ToString());
+                if (go == null) return;
+
                 Destroy(go);
             }
         }

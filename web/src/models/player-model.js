@@ -1,15 +1,15 @@
 import { BehaviorSubject } from 'rxjs'
 
 const playerModel = {
-  currentPlayer: new BehaviorSubject({
+	currentPlayer: new BehaviorSubject({
 		/*
     token: '',
 		id: '-',
 		name: '-',
 		*/
-  }),
-  players: new BehaviorSubject({}),
-    /*
+	}),
+	players: new BehaviorSubject({}),
+	/*
 		 * players: {
 				id: int,
 				nick: string,
@@ -23,7 +23,7 @@ const playerModel = {
 				]
 			},
 		*/
-  presences: new BehaviorSubject([]),
+	presences: new BehaviorSubject([]),
 	/*
 	 * presences: {
 			'player:$int': {
@@ -41,12 +41,12 @@ const playerModel = {
 	// methods
 	setPositions: (eventState) => {
 		const players = [...playerModel.players._value]
-		const ctxPlayer = players.find(v => v.id == eventState.player_token)
-		if(ctxPlayer) {
+		const ctxPlayer = players.find((v) => v.id == eventState.player_token)
+		if (ctxPlayer) {
 		}
-		
+
 		console.log('ff', ctxPlayer)
-	}
+	},
 }
 
 export { playerModel }
