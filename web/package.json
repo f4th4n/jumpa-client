@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "webpack --watch",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider webpack --watch",
     "deploy": "./resolve-unity-build.sh"
   },
   "keywords": [],

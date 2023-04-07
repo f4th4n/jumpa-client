@@ -6,7 +6,7 @@ const playerModel = {
     token: '',
 		id: '-',
 		name: '-',
-		*/
+	*/
 	}),
 	players: new BehaviorSubject({}),
 	/*

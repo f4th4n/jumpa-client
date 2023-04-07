@@ -1,10 +1,12 @@
 ### Client channel simulation
+
 ```
 ff.game.position.walkAbsolute(1, 6)
 ff.game.profile.setColor('#00ff00') // TODO
 ```
 
 ### Deploy to Unity
+
 Change isProd to true in src/config.json
 
 ```
@@ -15,8 +17,9 @@ $ ./resolve-unity-build.sh
 ```
 
 shell 2
+
 ```
 $ http-server
 
-then open http://localhost:8080/?player_token=abc
+then open http://localhost:3000/?player_token=abc
 ```

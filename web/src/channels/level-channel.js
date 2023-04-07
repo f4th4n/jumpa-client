@@ -62,6 +62,8 @@ const levelChannel = {
 
     channel.on('presence_diff', (diff) => {
       const presences = Presence.syncDiff(playerModel.presences._value, diff)
+      console.log('diff', diff)
+      console.log('presences', presences)
       playerModel.presences.next(presences)
     })
   },

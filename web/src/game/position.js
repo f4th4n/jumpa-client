@@ -25,7 +25,10 @@ const position = {
 
   updatePlayerPos: (state, isSelf = false) => {
     var players = { ...playerModel.players._value }
-    players[state.id] = { ...state }
+    console.log('...players', players)
+    console.log('...state', state)
+    players[state.player_id] = { ...state }
+    console.log('....players', players)
     playerModel.players.next(players)
 
     var profile = new PlayerProfile()

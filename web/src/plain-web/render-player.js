@@ -14,7 +14,12 @@ const renderPlayer = {
   render: (presences) => {
     var html = ''
     for (let k in presences) {
-      html += `<li>${presences[k].metas[0].nick}</li>`
+      console.log('playerModel', playerModel.players._value)
+      html += `<li>
+        nick: ${presences[k].metas[0].nick}<br />
+        position: x 30, y 40
+        <br /><br />
+      </li>`
     }
     window.document.querySelector('#player-list').innerHTML = html
   },
