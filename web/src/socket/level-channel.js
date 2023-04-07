@@ -2,6 +2,7 @@ import { Presence } from 'phoenix'
 import { playerModel } from '../models/player-model'
 import { position } from '../game/position'
 
+// TODO refactor this to be more readable, probably separate between action and calculation
 const levelChannel = {
   channel: null,
   socket: null,
@@ -42,10 +43,10 @@ const levelChannel = {
 
     // TODO resume on last position when reload
     position.walkAbsolute(0, 0)
-    levelChannel.addEvent(channel)
+    levelChannel.addEvents(channel)
   },
 
-  addEvent: (channel) => {
+  addEvents: (channel) => {
     channel.on('ping', (state) => {
       console.log('there is ping from server', state, +new Date())
     })
@@ -62,6 +63,12 @@ const levelChannel = {
 
     channel.on('walk_absolute', (state) => {
       position.updatePlayerPos(state)
+    })
+
+    channel.on('player_detail', (state) => {
+      var players = { ...playerModel.players._value }
+      players[state.player_id] = state
+      playerModel.players.next(players)
     })
   },
 }

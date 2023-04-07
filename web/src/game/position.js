@@ -1,5 +1,5 @@
 import { caller } from '../unity/caller'
-import { levelChannel } from '../channels/level-channel'
+import { levelChannel } from '../socket/level-channel'
 import { playerModel } from '../models/player-model'
 import { PlayerProfile } from '../models/player-profile-class'
 

@@ -4,7 +4,7 @@ import { levelChannel } from './level-channel'
 
 const channelModule = {
   start: () => {
-    const socket = new Socket(config.wsGameEndpoint, { params: { token: 'abc' } }) // TODO change token
+    const socket = new Socket(config.wsGameEndpoint, { params: { token: config.roomToken } }) // TODO change token to be dynamic
     socket.connect()
 
     levelChannel.init(socket)

@@ -1,6 +1,7 @@
 import { initializeState } from './initialize-state'
-import { socket } from './channels/index'
+import { socket } from './socket/index'
 import { global } from './global'
+import { listeners } from './listeners'
 
 initializeState
   .waitForUnity()
@@ -8,6 +9,7 @@ initializeState
   .then(initializeState.renderState)
   .then(() => {
     socket.start()
+    listeners.start()
     global.start()
   })
   .catch((e) => {

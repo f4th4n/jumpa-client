@@ -1,5 +1,5 @@
 import { game } from './game/index'
-import { levelChannel } from './channels/level-channel'
+import { levelChannel } from './socket/level-channel'
 import { playerModel } from './models/player-model'
 import { request } from './request/request'
 import { unity } from './unity'
@@ -9,15 +9,15 @@ const global = {
 		window.ff = {
 			game,
 			channels: {
-				levelChannel
+				levelChannel,
 			},
 			models: {
-				playerModel
+				playerModel,
 			},
 			request,
-			unity
+			unity,
 		}
-	}
+	},
 }
 
 export { global }
