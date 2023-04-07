@@ -7,17 +7,23 @@ const renderPlayer = {
 
   subscribe: () => {
     playerModel.presences.subscribe({
-      next: (v) => renderPlayer.render(v),
+      next: (v) => renderPlayer.render(),
+    })
+    playerModel.players.subscribe({
+      next: (v) => renderPlayer.render(),
     })
   },
 
-  render: (presences) => {
+  render: () => {
     var html = ''
-    for (let k in presences) {
-      console.log('playerModel', playerModel.players._value)
+    for (let key in playerModel.presences._value) {
+      const presence = playerModel.presences._value[key]
+      const player_id = presence.metas[0].player_id
+      const player = playerModel.players._value[player_id]
+
       html += `<li>
-        nick: ${presences[k].metas[0].nick}<br />
-        position: x 30, y 40
+        nick: ${player_id}<br />
+        ${player ? `position: x ${player.pos_x}, y ${player.pos_x}}` : ''}
         <br /><br />
       </li>`
     }

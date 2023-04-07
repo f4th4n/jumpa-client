@@ -44,8 +44,6 @@ const playerModel = {
 		const ctxPlayer = players.find((v) => v.id == eventState.player_token)
 		if (ctxPlayer) {
 		}
-
-		console.log('ff', ctxPlayer)
 	},
 }
 

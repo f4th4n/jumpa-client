@@ -73,3 +73,4 @@ crashlytics-build.properties
 ######## WEB
 node_modules
 dist/main.js
+web/dist/main.js

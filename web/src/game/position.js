@@ -8,15 +8,15 @@ const position = {
     const playerToken = playerModel.currentPlayer._value.token
     const state = { player_token: playerToken, created_at: +new Date(), pos_x: x, pos_y: y }
 
-    // self
+    const isSelf = true
     position.updatePlayerPos(
       {
         created_at: state.created_at,
-        id: playerModel.currentPlayer._value.id,
+        player_id: playerModel.currentPlayer._value.id,
         pos_x: x,
         pos_y: y,
       },
-      true
+      isSelf
     )
 
     // other
@@ -25,10 +25,7 @@ const position = {
 
   updatePlayerPos: (state, isSelf = false) => {
     var players = { ...playerModel.players._value }
-    console.log('...players', players)
-    console.log('...state', state)
     players[state.player_id] = { ...state }
-    console.log('....players', players)
     playerModel.players.next(players)
 
     var profile = new PlayerProfile()
