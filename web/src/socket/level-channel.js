@@ -41,8 +41,6 @@ const levelChannel = {
         console.log('Unable to join', resp)
       })
 
-    // TODO resume on last position when reload
-    position.walkAbsolute(0, 0)
     levelChannel.addEvents(channel)
   },
 
@@ -69,6 +67,10 @@ const levelChannel = {
       var players = { ...playerModel.players._value }
       players[state.player_id] = state
       playerModel.players.next(players)
+
+      for (let player of Object.values(players)) {
+        position.updatePlayerPos(player)
+      }
     })
   },
 }

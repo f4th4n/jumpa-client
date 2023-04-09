@@ -15,15 +15,19 @@ const renderPlayer = {
   },
 
   render: () => {
+    const order = (presences) => {
+      return Object.values(presences).sort((a, b) => a.metas[0].nick.localeCompare(b.metas[0].nick))
+    }
+
     var html = ''
-    for (let key in playerModel.presences._value) {
-      const presence = playerModel.presences._value[key]
+    const presences = order(playerModel.presences._value)
+    for (let presence of presences) {
       const player_id = presence.metas[0].player_id
       const player = playerModel.players._value[player_id]
 
       html += `<li>
         nick: ${player_id}<br />
-        ${player ? `position: x ${player.pos_x}, y ${player.pos_x}}` : ''}
+        ${player ? `position: x ${player.pos_x}, y ${player.pos_y}}` : ''}
         <br /><br />
       </li>`
     }

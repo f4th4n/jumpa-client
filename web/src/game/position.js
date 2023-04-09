@@ -19,7 +19,6 @@ const position = {
       isSelf
     )
 
-    // other
     levelChannel.channel.push('walk_absolute', state)
   },
 
