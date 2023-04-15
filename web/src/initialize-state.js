@@ -2,6 +2,7 @@ import { playerModel } from './models/player-model'
 import { request } from './request/request'
 import { plainWeb } from './plain-web'
 import { unity } from './unity'
+import config from './config.json'
 
 const initializeState = {
   waitForUnity: () => {
@@ -19,20 +20,20 @@ const initializeState = {
   },
   setState: async () => {
     const setPlayer = async () => {
-      const getPlayerTokenFromQueryParam = () => {
+      const getQueryParam = (paramName) => {
         const urlSearchParams = new URLSearchParams(window.location.search)
         const params = Object.fromEntries(urlSearchParams.entries())
-        if (!params.player_token) {
-          throw new Error('Unknown player id')
+        if (!params[paramName]) {
+          throw new Error(`Unknown ${paramName}`)
         }
 
-        const playerToken = params.player_token
-
-        return playerToken
+        return params[paramName]
       }
 
-      const playerToken = getPlayerTokenFromQueryParam()
-      const resPlayer = await request.get(`/players/get-by-token/${playerToken}`)
+      const playerToken = getQueryParam('player_token')
+      const roomToken = getQueryParam('room_token')
+      // TODO make roomToken dynamic
+      const resPlayer = await request.get(`/players/auth/${playerToken}/${roomToken}`)
       const player = resPlayer.data
       if (!player) throw new Error('Player not found')
 
